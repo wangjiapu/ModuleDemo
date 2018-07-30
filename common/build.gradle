@@ -1,13 +1,12 @@
-if (isModule.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+
+
+
     defaultConfig {
-        applicationId "com.example.testmodule"
+        applicationId "com.example.common"
         minSdkVersion 22
         targetSdkVersion 28
         versionCode 1
@@ -16,18 +15,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-    sourceSets {
-        main {
-            if (isModule.toBoolean()) {
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-                java{
-                    exclude 'debug/**'
-                }
-            }
-        }
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -45,4 +33,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    compile 'com.github.mzule.activityrouter:activityrouter:1.2.2'
+    annotationProcessor 'com.github.mzule.activityrouter:compiler:1.1.7'
 }
